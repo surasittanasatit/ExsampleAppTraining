@@ -19,7 +19,7 @@ class index extends Component {
             userName: '',
             passWord: '',
         };
-
+        this.handleGetEnroll = this.handleGetEnroll.bind();
     }
 
     onChangeTextUser = text => {
@@ -30,9 +30,14 @@ class index extends Component {
         this.setState({ passWord: text })
     }
 
-    onClickGet = (username, pasword) => e => {
-        console.log(username + ',' + pasword);
-        NavigationService.navigate('Home');
+    onClickGet = (username, password) => e => {
+        const { configuri } = this.props;
+        APIServices.GetEnroll(configuri, username, password, this.handleGetEnroll)
+    }
+
+    handleGetEnroll = (resulte) => {
+        console.log(resulte);
+        // NavigationService.navigate('Home');
     }
 
     render() {
@@ -63,7 +68,7 @@ class index extends Component {
                                 value={this.state.userName}
                                 onChangeText={this.onChangeTextUser}
                                 keyboardType={'default'}
-                                maxLength={10} />
+                                maxLength={50} />
                         </View>
                         <Text style={{ fontSize: 0.04 * viewportWidth, color: "#000000", paddingVertical: 5 }}>{'Password'}</Text>
                         <View style={Styles.block}>
@@ -76,7 +81,7 @@ class index extends Component {
                                 value={this.state.passWord}
                                 onChangeText={this.onChangeTextPassword}
                                 keyboardType={'default'}
-                                maxLength={10} />
+                                maxLength={50} />
                         </View>
                         <TouchableOpacity style={Styles.btn} onPress={this.onClickGet(this.state.userName, this.state.passWord)} >
                             <Text style={{ fontSize: 0.04 * viewportWidth, color: "#FFFFFF", fontWeight: 'bold' }}>{'Get'.toUpperCase()}</Text>

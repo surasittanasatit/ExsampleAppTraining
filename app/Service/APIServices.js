@@ -1,6 +1,27 @@
 import axios from 'axios'
 axios.defaults.timeout = 120000;
 
+const GetEnroll = (hostUrl, username, password, handleGetEnroll) => {
+    const data =
+    {
+        "username": username,
+        "password": password
+    };
+    axios({
+        method: 'POST',
+        url: hostUrl + '/enroll',
+        responseType: 'json',
+        data: data
+    })
+        .then(function (response) {
+            handleGetEnroll(response.data);
+        })
+        .catch(function (error) {
+            console.log('Error handleGetEnroll :', (error));
+            handleGetEnroll(error.response);
+        });
+}
+
 const GetOTPSMS = (hostUrl, phone_number, handleGetOTPSMS) => {
     const data = {
         "phone_number": phone_number
@@ -35,7 +56,7 @@ const GetVerifyOTP = (hostUrl, phone_number, otp, handleGetVerifyOTP) => {
             handleGetVerifyOTP(response.data);
         })
         .catch(function (error) {
-            //console.log('Error handleGetVerifyOTP :', error);
+            console.log('Error handleGetVerifyOTP :', error);
             handleGetVerifyOTP(error.response);
         });
 }
@@ -43,4 +64,5 @@ const GetVerifyOTP = (hostUrl, phone_number, otp, handleGetVerifyOTP) => {
 export default {
     GetOTPSMS,
     GetVerifyOTP,
+    GetEnroll
 };
