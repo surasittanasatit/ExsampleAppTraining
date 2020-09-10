@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, StackActions } from 'react-navigation'
 import { DrawerActions } from 'react-navigation-drawer'
 
 let _navigator
@@ -24,7 +24,16 @@ function closeDrawer() {
 }
 
 function back() {
-  _navigator.dispatch(NavigationActions.goBack())
+  _navigator.dispatch(NavigationActions.back())
+}
+
+function resetNavigate() {
+  _navigator.dispatch(StackActions.reset({
+    index: 0,
+    actions: [
+      NavigationActions.navigate({ routeName: 'GetToken' })
+    ],
+  }))
 }
 
 
@@ -33,5 +42,6 @@ export default {
   setTopLevelNavigator,
   openDrawer,
   closeDrawer,
-  back
+  back,
+  resetNavigate,
 }

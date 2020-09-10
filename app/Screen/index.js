@@ -2,24 +2,33 @@ import React, { Component } from 'react'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 
+import Home from './Home';
 import GetSmsOTP from './GetSmsOTP';
 import VerifyOTP from './VerifyOTP';
+import GetToken from './GetToken';
 import NavigationService from '@service/Navigation'
 
 const AppNav = createStackNavigator(
   {
+    Home: {
+      screen: Home
+    },
     GetSmsOTP: {
-      screen: GetSmsOTP
+      screen: GetSmsOTP,
     },
     VerifyOTP: {
-      screen: VerifyOTP
+      screen: VerifyOTP,
+    },
+    GetToken: {
+      screen: GetToken
     }
   },
   {
     headerMode: "none",
-    initialRouteName: "GetSmsOTP",
-    navigationOptions: {
-      headerShown: false
+    initialRouteName: "GetToken",
+    defaultNavigationOptions: {
+      headerShown: false,
+      gestureEnabled: false
     }
   }
 )

@@ -5,4 +5,10 @@ export const modelAction = {
             payload: phonenumber,
         };
     },
+    getActionToken: token => {
+        return {
+            type: "TOKEN",
+            payload: token,
+        };
+    },
 };

@@ -17,19 +17,25 @@ class index extends Component {
         super(props);
         this.state = {
             //phone_number: '',
+            focusDescriptionInput: false
         };
 
         this.handleResData = this.handleResData.bind();
     }
 
+    componentDidMount() {
+        // this.phonenumberInput.focus(); 
+    }
+
     handleClickGetSmsOTP = phonenumber => e => {
         const { configuri } = this.props;
         e.preventDefault();
-        dismissKeyboard();
         if (phonenumber == '') {
             Alert.alert('Alert Message !', 'Please Input Telephone Number');
             return;
         }
+        //NavigationService.navigate('VerifyOTP');
+        dismissKeyboard();
         APIServices.GetOTPSMS(configuri, phonenumber, this.handleResData);
     }
 
@@ -49,6 +55,16 @@ class index extends Component {
         this.props.setActionPhoneNumber(text);
     }
 
+    onSubmitEditingText = e => {
+        const { configuri, phonenumber } = this.props;
+        if (phonenumber == '') {
+            Alert.alert('Alert Message !', 'Please Input Telephone Number');
+            return;
+        }
+        dismissKeyboard();
+        APIServices.GetOTPSMS(configuri, phonenumber, this.handleResData);
+    }
+
     render() {
         return (
             <Container style={Style.layoutFix} >
@@ -58,7 +74,7 @@ class index extends Component {
                         <Text style={{ fontSize: 0.04 * viewportWidth, color: "#FFFFFF" }}>{'Left'}</Text>
                     </View>
                     <View style={Style.actionBarMiddle} >
-                        <Text style={{ fontSize: 0.04 * viewportWidth, color: "#FFFFFF" }}>{'Header'}</Text>
+                        <Text style={{ fontSize: 0.04 * viewportWidth, color: "#FFFFFF" }}>{'SMS OTP'}</Text>
                     </View>
                     <View style={Style.actionBarRight}>
                         <Text style={{ fontSize: 0.04 * viewportWidth, color: "#FFFFFF" }}>{'Right'}</Text>
@@ -69,6 +85,9 @@ class index extends Component {
                         <Text style={{ fontSize: 0.04 * viewportWidth, color: "#000000", paddingVertical: 5 }}>{'Input Telephone Number'}</Text>
                         <View style={Styles.block}>
                             <TextInput
+                                ref={(input) => { this.phonenumberInput = input; }}
+                                //onSubmitEditing={this.onSubmitEditingText}
+                                returnKeyType="done"
                                 style={Styles.textInput}
                                 placeholder={'Telephone Number'}
                                 placeholderTextColor={'#9c9c9c'}
