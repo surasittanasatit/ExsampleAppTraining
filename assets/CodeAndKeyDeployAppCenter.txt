@@ -1,0 +1,10 @@
+npm start --reset-cache
+
+Build Apk Android:
+cd android && ./gradlew clean && cd ..
+
+cd android
+cd android && ./gradlew assembleRelease && cd ..
+
+Removing .bin node_modules:
+rm -rf node_modules && npm install
