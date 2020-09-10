@@ -36,8 +36,9 @@ class index extends Component {
     }
 
     handleGetEnroll = (resulte) => {
-        console.log(resulte);
-        // NavigationService.navigate('Home');
+        //console.log(resulte.result);
+        this.props.setActionToken(resulte.result)
+        NavigationService.navigate('SamplePage1');
     }
 
     render() {

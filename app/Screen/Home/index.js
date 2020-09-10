@@ -41,7 +41,7 @@ class index extends Component {
         </Header>
         <Content>
           <View style={Styles.section}>
-            <Text style={{ fontSize: 0.04 * viewportWidth, color: "#FFFFFF" }}>{this.props.token}</Text>
+            <Text style={{ fontSize: 0.04 * viewportWidth, color: "black" }}>{this.props.token}</Text>
           </View>
         </Content>
       </Container>
@@ -50,6 +50,7 @@ class index extends Component {
 }
 
 const mapStateToProp = state => {
+  console.log(state.model);
   return {
     token: state.model.token,
   };

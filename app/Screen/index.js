@@ -6,6 +6,8 @@ import Home from './Home';
 import GetSmsOTP from './GetSmsOTP';
 import VerifyOTP from './VerifyOTP';
 import GetToken from './GetToken';
+import SamplePage1 from './Sample1';
+
 import NavigationService from '@service/Navigation'
 
 const AppNav = createStackNavigator(
@@ -21,6 +23,9 @@ const AppNav = createStackNavigator(
     },
     GetToken: {
       screen: GetToken
+    },
+    SamplePage1:{
+      screen : SamplePage1
     }
   },
   {

@@ -36,7 +36,8 @@ class index extends Component {
         }
         //NavigationService.navigate('VerifyOTP');
         dismissKeyboard();
-        APIServices.GetOTPSMS(configuri, phonenumber, this.handleResData);
+        NavigationService.navigate('VerifyOTP');
+        //APIServices.GetOTPSMS(configuri, phonenumber, this.handleResData);
     }
 
     handleResData = (results) => {
